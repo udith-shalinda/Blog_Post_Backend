@@ -1,21 +1,21 @@
-package com.udithshalinda.demo.customer;
+package com.udithshalinda.demo.user;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
-public class Customer {
+public class User {
 
     @Id
     public ObjectId id;
 
-    public String firstName;
-    public String lastName;
+    public String email;
+    public String password;
 
-    public Customer() {}
+    public User() {}
 
-    public Customer(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
     public void setId(ObjectId id){
         this.id = id;
@@ -24,7 +24,7 @@ public class Customer {
     public String toString() {
         return String.format(
                 "Customer[id=%s, firstName='%s', lastName='%s']",
-                id, firstName, lastName);
+                id, email, password);
     }
 
 }
