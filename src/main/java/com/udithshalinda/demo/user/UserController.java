@@ -27,11 +27,15 @@ public class UserController {
         return this.userRepository.save(user);
     }
 
-    @GetMapping("/login")
-    public User getUserByEmail(){
-        User user = userRepository.findByEmail("Alice");
+    @PostMapping("/login")
+    public User getUserByEmail(@RequestBody User inputUser){
+        User user = this.userRepository.findByEmail(inputUser.email);
         System.out.println(user);
-        return user;
+        if(user.password == inputUser.password){
+            return user;
+        }else{
+            return null;
+        }
     }
 
     @PutMapping("updateUser/{id}")
