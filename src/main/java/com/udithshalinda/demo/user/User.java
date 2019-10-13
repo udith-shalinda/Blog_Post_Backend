@@ -10,8 +10,7 @@ public class User {
 
     public String email;
     public String password;
-
-    public User() {}
+//    public ObjectId userDetailsId;
 
     public User(String email, String password) {
         this.email = email;
