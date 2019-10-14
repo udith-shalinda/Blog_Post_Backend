@@ -31,11 +31,7 @@ public class UserController {
     public User getUserByEmail(@RequestBody User inputUser){
         User user = this.userRepository.findByEmail(inputUser.email);
         System.out.println(user);
-        if(user.password == inputUser.password){
-            return user;
-        }else{
-            return null;
-        }
+        return user;
     }
 
     @PutMapping("updateUser/{id}")
