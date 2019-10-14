@@ -1,6 +1,7 @@
 package com.udithshalinda.demo.userDetails;
 
 import com.udithshalinda.demo.user.User;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,5 +16,11 @@ public class UserDetailsController {
     @PostMapping("save")
     public UserDetails saveUser(@RequestBody UserDetails userDetails) {
         return this.userDetailsRepository.save(userDetails);
+    }
+
+    @GetMapping("getuserDetailsById/{id}")
+    public UserDetails getDetails(@PathVariable("id") ObjectId userDetailsId){
+        System.out.println(userDetailsId);
+        return this.userDetailsRepository.findById(userDetailsId);
     }
 }

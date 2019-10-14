@@ -28,10 +28,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public User getUserByEmail(@RequestBody User inputUser){
+    public String getUserByEmail(@RequestBody User inputUser){
         User user = this.userRepository.findByEmail(inputUser.email);
-        System.out.println(user);
-        return user;
+        System.out.println(user.userDetailsId.toString());
+        return user.userDetailsId.toString();
     }
 
     @PutMapping("updateUser/{id}")
