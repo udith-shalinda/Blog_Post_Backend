@@ -10,11 +10,12 @@ public class User {
 
     public String email;
     public String password;
-//    public ObjectId userDetailsId;
+    public ObjectId userDetailsId;
 
-    public User(String email, String password) {
+    public User(String email, String password,ObjectId userDetailsId) {
         this.email = email;
         this.password = password;
+        this.userDetailsId = userDetailsId;
     }
     public void setId(ObjectId id){
         this.id = id;
@@ -22,8 +23,8 @@ public class User {
     @Override
     public String toString() {
         return String.format(
-                "User[id=%s, email='%s', password='%s']",
-                id, email, password);
+                "User[id=%s, email='%s', password='%s', userDetailsId:'%s']",
+                id, email, password,userDetailsId);
     }
 
 }

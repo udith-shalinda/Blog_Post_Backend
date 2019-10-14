@@ -12,7 +12,7 @@ public class UserDetails {
     public String profilePictureLink;
     public String status;
 
-    public UserDetails(String name, String profilePictureLink,String status) {
+    public UserDetails(String name,String status, String profilePictureLink) {
         this.name = name;
         this.profilePictureLink = profilePictureLink;
         this.status = status;
