@@ -1,6 +1,5 @@
 package com.udithshalinda.demo.userDetails;
 
-import com.udithshalinda.demo.user.User;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
