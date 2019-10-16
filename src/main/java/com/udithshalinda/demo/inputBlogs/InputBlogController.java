@@ -23,4 +23,9 @@ public class InputBlogController {
     public InputBlog getBlog(@PathVariable("id") ObjectId id){
         return this.inputBlogRepository.findById(id);
     }
+
+    @GetMapping("getAllBlogs")
+    public Iterable<InputBlog> getAllPosts(){
+        return this.inputBlogRepository.findAll();
+    }
 }
