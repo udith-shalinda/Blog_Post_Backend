@@ -1,6 +1,5 @@
-package com.udithshalinda.demo.inputBlogs;
+package com.udithshalinda.demo.input_blogs;
 
-import com.udithshalinda.demo.userDetails.UserDetails;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

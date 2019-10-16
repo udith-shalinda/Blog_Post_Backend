@@ -1,7 +1,5 @@
-package com.udithshalinda.demo.inputBlogs;
+package com.udithshalinda.demo.input_blogs;
 
-import com.udithshalinda.demo.userDetails.UserDetails;
-import com.udithshalinda.demo.userDetails.UserDetailsRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.udithshalinda.demo.inputBlogs;
+package com.udithshalinda.demo.input_blogs;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;

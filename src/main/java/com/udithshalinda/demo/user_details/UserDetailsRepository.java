@@ -1,6 +1,4 @@
-package com.udithshalinda.demo.userDetails;
-
-import java.util.List;
+package com.udithshalinda.demo.user_details;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;

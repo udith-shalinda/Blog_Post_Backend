@@ -1,4 +1,4 @@
-package com.udithshalinda.demo.userDetails;
+package com.udithshalinda.demo.user_details;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
