@@ -7,6 +7,7 @@ public class InputBlog {
     @Id
     public ObjectId id;
 
+    public String testId;
     public String header;
     public String blog;
     public String createrId;
