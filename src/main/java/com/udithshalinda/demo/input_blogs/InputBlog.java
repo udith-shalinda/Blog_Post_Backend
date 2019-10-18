@@ -7,11 +7,13 @@ public class InputBlog {
     @Id
     public ObjectId id;
 
+    public String header;
     public String blog;
     public String createrId;
 
 
-    public InputBlog(String blog,String createrId) {
+    public InputBlog(String header,String blog,String createrId) {
+        this.header = header;
         this.blog = blog;
         this.createrId= createrId;
     }
