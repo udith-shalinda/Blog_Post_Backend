@@ -11,12 +11,14 @@ public class InputBlog {
     public String header;
     public String blog;
     public String createrId;
+    public String coverImageId;
 
 
-    public InputBlog(String header,String blog,String createrId) {
+    public InputBlog(String header,String blog,String createrId,String coverImageId) {
         this.header = header;
         this.blog = blog;
         this.createrId= createrId;
+        this.coverImageId = coverImageId;
     }
     public void setId(ObjectId id){
         this.id = id;
