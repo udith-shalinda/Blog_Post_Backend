@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Base64;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class PhotoController {
@@ -29,6 +30,6 @@ public class PhotoController {
         model.addAttribute("title", photo.getTitle());
         model.addAttribute("image",
                 Base64.getEncoder().encodeToString(photo.getImage().getData()));
-        return "photos";
+        return Base64.getEncoder().encodeToString(photo.getImage().getData());
     }
 }
