@@ -1,9 +1,12 @@
 package com.udithshalinda.demo.input_blogs;
 
+import com.udithshalinda.demo.upload_photo.Photo;
+import com.udithshalinda.demo.upload_photo.PhotoService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Base64;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -14,6 +17,9 @@ public class InputBlogController {
     @Autowired
     private InputBlogRepository inputBlogRepository;
 
+    @Autowired
+    private PhotoService photoService;
+
     @PostMapping("save")
     public InputBlog saveUser(@RequestBody InputBlog inputBlog) {
         System.out.println(inputBlog.createrId);
@@ -22,8 +28,10 @@ public class InputBlogController {
 
     @GetMapping("getOneBlog/{id}")
     public InputBlog getBlog(@PathVariable("id") ObjectId id){
-        System.out.println(id);
-        return this.inputBlogRepository.findById(id);
+        InputBlog inputBlog = this.inputBlogRepository.findById(id);
+        Photo photo = photoService.getPhoto(inputBlog.coverImageId);
+        inputBlog.coverImageId = Base64.getEncoder().encodeToString(photo.getImage().getData());
+        return inputBlog;
     }
 
     @GetMapping("getAllBlogs")
@@ -33,5 +41,10 @@ public class InputBlogController {
             blog.testId = blog.id.toString();
         }
         return list;
+    }
+    @PutMapping("addUpVoter/{id}")
+    public InputBlog setUpVoter(@PathVariable("id") String id,@RequestBody InputBlog inputBlog){
+        inputBlog.setUpVoters(id);
+        return this.inputBlogRepository.save(inputBlog);
     }
 }
