@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -42,32 +43,35 @@ public class InputBlogController {
         }
         return list;
     }
-    @PutMapping("addUpVoter/{id}")
-    public InputBlog setUpVoter(@PathVariable("id") String id,@RequestBody InputBlog inputBlog){
-        inputBlog.addUpVoters(id);
+    @PutMapping("addUpVoter/{blogId}")
+    public InputBlog setUpVoter(@PathVariable("blogId") ObjectId blogId,@RequestBody ObjectId voterId){
+        InputBlog inputBlog = this.inputBlogRepository.findById(blogId);
+        inputBlog.addUpVoters(voterId);
         return this.inputBlogRepository.save(inputBlog);
     }
     @PutMapping("addDownVoter/{id}")
-    public InputBlog setDOwnVoter(@PathVariable("id") String id,@RequestBody InputBlog inputBlog){
+    public String setDOwnVoter(@PathVariable("id") String id,@RequestBody InputBlog inputBlog){
         inputBlog = this.inputBlogRepository.findById(inputBlog.id);
         inputBlog.addDownVoters(id);
-        return this.inputBlogRepository.save(inputBlog);
+        this.inputBlogRepository.save(inputBlog);
+        return "sfhsfsfsfsf";
     }
     @PutMapping("addVoter/{id}")
-    public String addVoter(@PathVariable("id") String id,@RequestBody InputBlog inputBlog){
+    public String addVoter(@PathVariable("id") String id,@RequestBody ObjectId blogId){
         int count =0;
         String returnString= "not-added";
-        inputBlog = this.inputBlogRepository.findById(inputBlog.id);
-        for(String voterId:inputBlog.upVoters){
-            if(voterId.equals(id)){
-                count++;
-            }
-        }
-        if(count == 0){
-           inputBlog.addUpVoters(id);
-           returnString="added";
-           this.inputBlogRepository.save(inputBlog);
-        }
+        System.out.println(id+blogId);
+        InputBlog inputBlog = this.inputBlogRepository.findById(blogId);
+//        for(String voterId:inputBlog.upVoters){
+//            if(voterId.equals(id)){
+//                count++;
+//            }
+//        }
+//        if(count == 0){
+//           inputBlog.addUpVoters(id);
+//           returnString="added";
+//           this.inputBlogRepository.save(inputBlog);
+//        }
         return returnString;
     }
 }

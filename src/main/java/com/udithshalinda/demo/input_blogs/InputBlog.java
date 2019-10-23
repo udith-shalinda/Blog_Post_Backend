@@ -3,6 +3,7 @@ package com.udithshalinda.demo.input_blogs;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputBlog {
@@ -14,7 +15,7 @@ public class InputBlog {
     public String blog;
     public String createrId;
     public String coverImageId;
-    public List<String> upVoters;
+    public List<ObjectId> upVoters = new ArrayList<>();
     public List<String> downVoters;
 
 
@@ -28,7 +29,7 @@ public class InputBlog {
         this.id = id;
     }
 
-    public void addUpVoters(String userId){
+    public void addUpVoters(ObjectId userId){
         this.upVoters.add(userId);
     }
     public void addDownVoters(String userId){
