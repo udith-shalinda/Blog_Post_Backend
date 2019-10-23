@@ -28,10 +28,10 @@ public class InputBlog {
         this.id = id;
     }
 
-    public void setUpVoters(String userId){
+    public void addUpVoters(String userId){
         this.upVoters.add(userId);
     }
-    public void setDownVoters(String userId){
+    public void addDownVoters(String userId){
         this.downVoters.add(userId);
     }
 }

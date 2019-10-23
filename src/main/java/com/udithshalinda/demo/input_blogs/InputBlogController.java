@@ -44,7 +44,13 @@ public class InputBlogController {
     }
     @PutMapping("addUpVoter/{id}")
     public InputBlog setUpVoter(@PathVariable("id") String id,@RequestBody InputBlog inputBlog){
-        inputBlog.setUpVoters(id);
+        inputBlog.addUpVoters(id);
+        return this.inputBlogRepository.save(inputBlog);
+    }
+    @PutMapping("addDownVoter/{id}")
+    public InputBlog setDOwnVoter(@PathVariable("id") String id,@RequestBody InputBlog inputBlog){
+        inputBlog = this.inputBlogRepository.findById(inputBlog.id);
+        inputBlog.addDownVoters(id);
         return this.inputBlogRepository.save(inputBlog);
     }
 }
