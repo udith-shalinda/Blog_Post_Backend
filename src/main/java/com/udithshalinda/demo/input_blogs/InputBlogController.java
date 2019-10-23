@@ -49,29 +49,13 @@ public class InputBlogController {
         inputBlog.addUpVoters(voterId);
         return this.inputBlogRepository.save(inputBlog);
     }
+
     @PutMapping("addDownVoter/{id}")
-    public String setDOwnVoter(@PathVariable("id") String id,@RequestBody InputBlog inputBlog){
+    public InputBlog setDOwnVoter(@PathVariable("id") String id,@RequestBody InputBlog inputBlog){
         inputBlog = this.inputBlogRepository.findById(inputBlog.id);
         inputBlog.addDownVoters(id);
-        this.inputBlogRepository.save(inputBlog);
-        return "sfhsfsfsfsf";
+
+        return this.inputBlogRepository.save(inputBlog);
     }
-    @PutMapping("addVoter/{id}")
-    public String addVoter(@PathVariable("id") String id,@RequestBody ObjectId blogId){
-        int count =0;
-        String returnString= "not-added";
-        System.out.println(id+blogId);
-        InputBlog inputBlog = this.inputBlogRepository.findById(blogId);
-//        for(String voterId:inputBlog.upVoters){
-//            if(voterId.equals(id)){
-//                count++;
-//            }
-//        }
-//        if(count == 0){
-//           inputBlog.addUpVoters(id);
-//           returnString="added";
-//           this.inputBlogRepository.save(inputBlog);
-//        }
-        return returnString;
-    }
+
 }
