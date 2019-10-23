@@ -53,4 +53,21 @@ public class InputBlogController {
         inputBlog.addDownVoters(id);
         return this.inputBlogRepository.save(inputBlog);
     }
+    @PutMapping("addVoter/{id}")
+    public String addVoter(@PathVariable("id") String id,@RequestBody InputBlog inputBlog){
+        int count =0;
+        String returnString= "not-added";
+        inputBlog = this.inputBlogRepository.findById(inputBlog.id);
+        for(String voterId:inputBlog.upVoters){
+            if(voterId.equals(id)){
+                count++;
+            }
+        }
+        if(count == 0){
+           inputBlog.addUpVoters(id);
+           returnString="added";
+           this.inputBlogRepository.save(inputBlog);
+        }
+        return returnString;
+    }
 }
