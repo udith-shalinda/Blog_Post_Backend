@@ -15,8 +15,8 @@ public class InputBlog {
     public String blog;
     public String createrId;
     public String coverImageId;
-    public List<ObjectId> upVoters = new ArrayList<>();
-    public List<String> downVoters;
+    public List<String> upVoters = new ArrayList<>();
+    public List<String> downVoters = new ArrayList<>();
 
 
     public InputBlog(String header,String blog,String createrId,String coverImageId) {
@@ -29,10 +29,25 @@ public class InputBlog {
         this.id = id;
     }
 
-    public void addUpVoters(ObjectId userId){
+    public void addUpVoters(String userId){
         this.upVoters.add(userId);
     }
     public void addDownVoters(String userId){
         this.downVoters.add(userId);
+    }
+
+    public boolean checkUpVoter(String user){
+        if(this.downVoters != null){
+            return this.downVoters.contains(user);
+        }else{
+            return false;
+        }
+    }
+    public boolean checkDownVoter(String user){
+        if(this.upVoters != null){
+            return this.upVoters.contains(user);
+        }else{
+            return false;
+        }
     }
 }

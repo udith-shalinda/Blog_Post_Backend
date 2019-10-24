@@ -44,18 +44,29 @@ public class InputBlogController {
         return list;
     }
     @PutMapping("addUpVoter/{blogId}")
-    public InputBlog setUpVoter(@PathVariable("blogId") ObjectId blogId,@RequestBody ObjectId voterId){
+    public int setUpVoter(@PathVariable("blogId") ObjectId blogId,@RequestBody Voter voter){
         InputBlog inputBlog = this.inputBlogRepository.findById(blogId);
-        inputBlog.addUpVoters(voterId);
-        return this.inputBlogRepository.save(inputBlog);
+        if(inputBlog.checkDownVoter(voter.userId)){
+            inputBlog.downVoters.remove(voter.userId);
+            this.inputBlogRepository.save(inputBlog);
+        }else if(!inputBlog.checkUpVoter(voter.userId)){
+            inputBlog.addUpVoters(voter.userId);
+            this.inputBlogRepository.save(inputBlog);
+        }
+        return inputBlog.upVoters.size()-inputBlog.downVoters.size();
     }
 
     @PutMapping("addDownVoter/{id}")
-    public InputBlog setDOwnVoter(@PathVariable("id") String id,@RequestBody InputBlog inputBlog){
-        inputBlog = this.inputBlogRepository.findById(inputBlog.id);
-        inputBlog.addDownVoters(id);
-
-        return this.inputBlogRepository.save(inputBlog);
+    public int setDOwnVoter(@PathVariable("id") ObjectId blogId,@RequestBody Voter voter){
+        InputBlog inputBlog = this.inputBlogRepository.findById(blogId);
+        if(inputBlog.checkUpVoter(voter.userId)){
+            inputBlog.upVoters.remove(voter.userId);
+            this.inputBlogRepository.save(inputBlog);
+        }else if(!inputBlog.checkDownVoter(voter.userId)){
+            inputBlog.addDownVoters(voter.userId);
+            this.inputBlogRepository.save(inputBlog);
+        }
+        return inputBlog.upVoters.size()-inputBlog.downVoters.size();
     }
 
 }
