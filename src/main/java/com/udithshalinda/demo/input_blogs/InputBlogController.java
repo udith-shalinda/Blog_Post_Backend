@@ -47,7 +47,7 @@ public class InputBlogController {
     public int setUpVoter(@PathVariable("blogId") ObjectId blogId,@RequestBody Voter voter){
         InputBlog inputBlog = this.inputBlogRepository.findById(blogId);
         if(inputBlog.checkDownVoter(voter.userId)){
-            inputBlog.downVoters.remove(voter.userId);
+            inputBlog.removeDownVOter(voter.userId);
             this.inputBlogRepository.save(inputBlog);
         }else if(!inputBlog.checkUpVoter(voter.userId)){
             inputBlog.addUpVoters(voter.userId);
@@ -60,7 +60,7 @@ public class InputBlogController {
     public int setDOwnVoter(@PathVariable("id") ObjectId blogId,@RequestBody Voter voter){
         InputBlog inputBlog = this.inputBlogRepository.findById(blogId);
         if(inputBlog.checkUpVoter(voter.userId)){
-            inputBlog.upVoters.remove(voter.userId);
+            inputBlog.removeUpVOter(voter.userId);
             this.inputBlogRepository.save(inputBlog);
         }else if(!inputBlog.checkDownVoter(voter.userId)){
             inputBlog.addDownVoters(voter.userId);

@@ -37,6 +37,7 @@ public class InputBlog {
     }
 
     public boolean checkUpVoter(String user){
+        System.out.println(this.upVoters);
         if(this.downVoters != null){
             return this.downVoters.contains(user);
         }else{
@@ -49,5 +50,11 @@ public class InputBlog {
         }else{
             return false;
         }
+    }
+    public void removeUpVOter(String voter){
+        this.upVoters.remove(voter);
+    }
+    public void removeDownVOter(String voter){
+        this.downVoters.remove(voter);
     }
 }
