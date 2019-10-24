@@ -23,7 +23,6 @@ public class InputBlogController {
 
     @PostMapping("save")
     public InputBlog saveUser(@RequestBody InputBlog inputBlog) {
-        System.out.println(inputBlog.createrId);
         return this.inputBlogRepository.save(inputBlog);
     }
 
@@ -60,7 +59,6 @@ public class InputBlogController {
     public int setDOwnVoter(@PathVariable("id") ObjectId blogId,@RequestBody Voter voter){
         InputBlog inputBlog = this.inputBlogRepository.findById(blogId);
         if(inputBlog.checkUpVoter(voter.userId)){
-            System.out.println(inputBlog.upVoters.indexOf(voter.userId));
             inputBlog.removeUpVOter(voter.userId);
             this.inputBlogRepository.save(inputBlog);
         }else if(!inputBlog.checkDownVoter(voter.userId)){

@@ -38,8 +38,6 @@ public class InputBlog {
 
     public boolean checkDownVoter(String user){
         if(this.downVoters != null){
-            System.out.println("down not null");
-            System.out.println(this.downVoters.contains(user));
             return this.downVoters.contains(user);
         }else{
             return false;
@@ -47,8 +45,6 @@ public class InputBlog {
     }
     public boolean checkUpVoter(String user){
         if(this.upVoters != null){
-            System.out.println("up not null");
-            System.out.println(this.upVoters.contains(user));
             return this.upVoters.contains(user);
         }else{
             return false;
