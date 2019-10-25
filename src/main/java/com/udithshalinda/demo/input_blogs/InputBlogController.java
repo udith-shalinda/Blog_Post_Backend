@@ -2,6 +2,8 @@ package com.udithshalinda.demo.input_blogs;
 
 import com.udithshalinda.demo.upload_photo.Photo;
 import com.udithshalinda.demo.upload_photo.PhotoService;
+import com.udithshalinda.demo.user_details.UserDetails;
+import com.udithshalinda.demo.user_details.UserDetailsRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,9 @@ public class InputBlogController {
     @Autowired
     private PhotoService photoService;
 
+    @Autowired
+    private UserDetailsRepository userDetailsRepository;
+
     @PostMapping("save")
     public InputBlog saveUser(@RequestBody InputBlog inputBlog) {
         return this.inputBlogRepository.save(inputBlog);
@@ -31,6 +36,8 @@ public class InputBlogController {
         InputBlog inputBlog = this.inputBlogRepository.findById(id);
         Photo photo = photoService.getPhoto(inputBlog.coverImageId);
         inputBlog.coverImageId = Base64.getEncoder().encodeToString(photo.getImage().getData());
+        UserDetails userDetails = this.userDetailsRepository.findById(new ObjectId(inputBlog.createrId));
+        inputBlog.createrId = userDetails.name;
         return inputBlog;
     }
 
