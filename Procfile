@@ -1,1 +1,1 @@
-web java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar
+java -jar your-app.jar --spring.profiles.active=heroku
