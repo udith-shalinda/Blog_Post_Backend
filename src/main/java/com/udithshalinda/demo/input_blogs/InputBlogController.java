@@ -6,11 +6,8 @@ import com.udithshalinda.demo.user_details.UserDetails;
 import com.udithshalinda.demo.user_details.UserDetailsRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -77,11 +74,6 @@ public class InputBlogController {
         return inputBlog.upVoters.size()-inputBlog.downVoters.size();
     }
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public String updateInputBlog(String message) throws Exception {
-        Thread.sleep(1000); // simulated delay
-        return message;
-    }
+
 
 }
