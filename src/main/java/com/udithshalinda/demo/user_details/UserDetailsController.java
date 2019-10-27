@@ -13,8 +13,9 @@ public class UserDetailsController {
     private UserDetailsRepository userDetailsRepository;
 
     @PostMapping("save")
-    public UserDetails saveUser(@RequestBody UserDetails userDetails) {
-        return this.userDetailsRepository.save(userDetails);
+    public String saveUser(@RequestBody UserDetails userDetails) {
+        UserDetails userDetails1 = this.userDetailsRepository.save(userDetails);
+        return userDetails1.id.toString();
     }
 
     @GetMapping("getuserDetailsById/{id}")
