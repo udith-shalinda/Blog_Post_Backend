@@ -9,4 +9,5 @@ public interface InputBlogRepository extends MongoRepository<InputBlog, String> 
 
     public InputBlog findById(ObjectId id);
     public List<InputBlog> findAll();
+    public List<InputBlog> findByCreaterId(String createrId);
 }

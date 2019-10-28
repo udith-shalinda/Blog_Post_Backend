@@ -48,6 +48,12 @@ public class InputBlogController {
         }
         return list;
     }
+
+    @GetMapping("getMyBlogs/{createrId}")
+    public Iterable<InputBlog> getMyBlogs(@PathVariable("createrId") String createrId){
+        return this.inputBlogRepository.findByCreaterId(createrId);
+    }
+
     @PutMapping("addUpVoter/{blogId}")
     public int setUpVoter(@PathVariable("blogId") ObjectId blogId,@RequestBody Voter voter){
         InputBlog inputBlog = this.inputBlogRepository.findById(blogId);
