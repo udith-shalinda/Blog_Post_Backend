@@ -54,6 +54,11 @@ public class InputBlogController {
         return this.inputBlogRepository.findByCreaterId(createrId);
     }
 
+    @GetMapping("searchBlog/{searchKey}")
+    public Iterable<InputBlog> getSearchResult(@PathVariable("searchKey") String searchKey){
+        return this.inputBlogRepository.findByHeaderIsLike(searchKey);
+    }
+
     @PutMapping("addUpVoter/{blogId}")
     public int setUpVoter(@PathVariable("blogId") ObjectId blogId,@RequestBody Voter voter){
         InputBlog inputBlog = this.inputBlogRepository.findById(blogId);
