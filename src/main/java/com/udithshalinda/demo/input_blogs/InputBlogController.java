@@ -54,7 +54,7 @@ public class InputBlogController {
         return this.inputBlogRepository.findByCreaterId(createrId);
     }
 
-    @GetMapping("searchBlog/{searchKey}")
+        @GetMapping("searchBlog/{searchKey}")
     public Iterable<InputBlog> getSearchResult(@PathVariable("searchKey") String searchKey){
         return this.inputBlogRepository.findByHeaderIsLike(searchKey);
     }

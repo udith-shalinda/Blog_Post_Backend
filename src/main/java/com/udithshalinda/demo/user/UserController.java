@@ -2,6 +2,8 @@ package com.udithshalinda.demo.user;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,10 +30,17 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String getUserByEmail(@RequestBody User inputUser){
+    public ResponseEntity<?> getUserByEmail(@RequestBody User inputUser){
         User user = this.userRepository.findByEmail(inputUser.email);
-        System.out.println(user.userDetailsId.toString());
-        return user.userDetailsId.toString();
+        if(user != null){
+            if(user.password.equals(inputUser.password)){
+                return new ResponseEntity<>(user.userDetailsId.toString(),HttpStatus.resolve(200));
+            }else{
+                return new ResponseEntity<>("password is not correct",HttpStatus.resolve(203));
+            }
+        }else{
+            return new ResponseEntity<>("Email not found",HttpStatus.resolve(404));
+        }
     }
 
     @PutMapping("updateUser/{id}")
