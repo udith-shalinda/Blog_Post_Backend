@@ -2,12 +2,14 @@ package com.udithshalinda.demo.user;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 public class User {
 
     @Id
     public ObjectId id;
 
+    @Indexed(unique = true)
     public String email;
     public String password;
     public ObjectId userDetailsId;
