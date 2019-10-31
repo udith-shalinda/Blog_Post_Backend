@@ -1,8 +1,12 @@
 package com.udithshalinda.demo.user_details;
 
+import com.udithshalinda.demo.upload_photo.Photo;
+import com.udithshalinda.demo.upload_photo.PhotoService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Base64;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -11,6 +15,9 @@ public class UserDetailsController {
 
     @Autowired
     private UserDetailsRepository userDetailsRepository;
+
+    @Autowired
+    private PhotoService photoService;
 
     @PostMapping("save")
     public String saveUser(@RequestBody UserDetails userDetails) {
@@ -21,12 +28,17 @@ public class UserDetailsController {
     @GetMapping("getuserDetailsById/{id}")
     public UserDetails getDetails(@PathVariable("id") ObjectId userDetailsId){
         System.out.println(userDetailsId);
-        return this.userDetailsRepository.findById(userDetailsId);
+        UserDetails userDetails = this.userDetailsRepository.findById(userDetailsId);
+        Photo photo = photoService.getPhoto(userDetails.profilePictureLink);
+        userDetails.profilePictureLink= "data:image/png;base64, "+Base64.getEncoder().encodeToString(photo.getImage().getData());
+        return userDetails;
     }
-    @PutMapping("updateUserDetails/{id}")
-    public UserDetails updateUserDetails(@PathVariable("id") ObjectId userDetailsId,@RequestBody UserDetails userDetails){
-        System.out.println(userDetailsId);
-        userDetails.setId(userDetailsId);
-        return this.userDetailsRepository.save(userDetails);
+    @PutMapping("update")
+    public UserDetails updateUserDetails(@RequestBody UserDetails userDetails){
+//        userDetails.setId(userDetailsId);
+        userDetails = this.userDetailsRepository.save(userDetails);
+        Photo photo = photoService.getPhoto(userDetails.profilePictureLink);
+        userDetails.profilePictureLink= "data:image/png;base64, "+Base64.getEncoder().encodeToString(photo.getImage().getData());
+        return userDetails;
     }
 }
