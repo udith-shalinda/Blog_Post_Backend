@@ -60,7 +60,11 @@ public class InputBlogController {
 
         @GetMapping("searchBlog/{searchKey}")
     public Iterable<InputBlog> getSearchResult(@PathVariable("searchKey") String searchKey){
-        return this.inputBlogRepository.findByHeaderIsLike(searchKey);
+            List<InputBlog> list = this.inputBlogRepository.findByHeaderIsLike(searchKey);
+            for(InputBlog blog: list){
+                blog.testId = blog.id.toString();
+            }
+        return list;
     }
 
     @PutMapping("addUpVoter/{blogId}")
