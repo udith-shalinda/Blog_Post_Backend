@@ -51,7 +51,11 @@ public class InputBlogController {
 
     @GetMapping("getMyBlogs/{createrId}")
     public Iterable<InputBlog> getMyBlogs(@PathVariable("createrId") String createrId){
-        return this.inputBlogRepository.findByCreaterId(createrId);
+        List<InputBlog> list = this.inputBlogRepository.findByCreaterId(createrId);
+        for(InputBlog blog: list){
+            blog.testId = blog.id.toString();
+        }
+        return list;
     }
 
         @GetMapping("searchBlog/{searchKey}")

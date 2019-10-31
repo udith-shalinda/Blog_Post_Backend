@@ -23,4 +23,10 @@ public class UserDetailsController {
         System.out.println(userDetailsId);
         return this.userDetailsRepository.findById(userDetailsId);
     }
+    @PutMapping("updateUserDetails/{id}")
+    public UserDetails updateUserDetails(@PathVariable("id") ObjectId userDetailsId,@RequestBody UserDetails userDetails){
+        System.out.println(userDetailsId);
+        userDetails.setId(userDetailsId);
+        return this.userDetailsRepository.save(userDetails);
+    }
 }
