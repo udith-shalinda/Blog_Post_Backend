@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Base64;
 
-@CrossOrigin(origins = "https://blog-posts-142d5.firebaseapp.com/")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class PhotoController {

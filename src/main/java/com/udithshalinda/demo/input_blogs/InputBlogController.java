@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Base64;
 import java.util.List;
 
-@CrossOrigin(origins = "https://blog-posts-142d5.firebaseapp.com/")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/inputBlog")
 public class InputBlogController {

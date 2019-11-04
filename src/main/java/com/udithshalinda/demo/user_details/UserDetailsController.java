@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Base64;
 
-@CrossOrigin(origins = "https://blog-posts-142d5.firebaseapp.com/")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/userDetails")
 public class UserDetailsController {

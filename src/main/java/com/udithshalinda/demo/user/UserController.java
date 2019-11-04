@@ -11,7 +11,7 @@ import javax.validation.Valid;
 /**
  * CustomerController
  */
-@CrossOrigin(origins = "https://blog-posts-142d5.firebaseapp.com/")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class UserController {
